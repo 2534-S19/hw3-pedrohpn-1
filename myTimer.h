@@ -31,5 +31,4 @@ bool timer1Expired(void);
 
 // TODO: Define any constants that are local to myTimer.c using #define
 
-
 #endif /* MYTIMER_H_ */

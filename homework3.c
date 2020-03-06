@@ -35,21 +35,24 @@ int main(void)
 
         // TODO: If Timer0 has expired, increment count0.
         // YOU MUST WRITE timer0expired IN myTimer.c
-
+        if (timer0Expired){
+            count0 = count0 + 1;
+        }
 
 
         // TODO: If Timer1 has expired, update the button history from the pushbutton value.
         // YOU MUST WRITE timer1expired IN myTimer.c
-
+        if (timer1Expired){
+            count1 = count1 + 1;
+        }
 
 
         // TODO: Call the button state machine function to check for a completed, debounced button press.
         // YOU MUST WRITE THIS FUNCTION BELOW.
-
-
-
         // TODO: If a completed, debounced button press has occurred, increment count1.
-
+        if (fsmBoosterpackButtonS1(count1)){
+          count1 = count1 + 1;
+        }
 
 
     }
@@ -62,8 +65,32 @@ void initBoard()
 
 // TODO: Map the value of a count variable to a color for LED2.
 // Since count is an unsigned integer, you can mask the value in some way.
-void changeLaunchpadLED2(unsigned int count)
-{
+void changeLaunchpadLED2(unsigned int count){
+    if (count == 1){
+        TurnOn_Launchpad_LED2_R(); // @suppress("Invalid arguments")
+    }
+    else if (count == 2){
+        TurnOff_Launchpad_LED2_R(); // @suppress("Invalid arguments")
+        TurnOn_Launchpad_LED2_G(); // @suppress("Invalid arguments")
+    }
+    else if (count == 3){
+        TurnOff_Launchpad_LED2_G(); // @suppress("Invalid arguments")
+        TurnOn_Launchpad_LED2_B(); // @suppress("Invalid arguments")
+    }
+    else if (count == 4){
+        TurnOff_Launchpad_LED2_B(); // @suppress("Invalid arguments")
+        TurnOn_Launchpad_LED2_R(); // @suppress("Invalid arguments")
+        TurnOn_Launchpad_LED2_G(); // @suppress("Invalid arguments")
+    }
+    else if (count == 5){
+        TurnOn_Launchpad_LED2_B(); // @suppress("Invalid arguments")
+    }
+    else{
+        TurnOff_Launchpad_LED2_R(); // @suppress("Invalid arguments")
+        TurnOff_Launchpad_LED2_G(); // @suppress("Invalid arguments")
+        TurnOff_Launchpad_LED2_B(); // @suppress("Invalid arguments")
+
+    }
 
 }
 
@@ -71,7 +98,31 @@ void changeLaunchpadLED2(unsigned int count)
 // This is essentially a copy of the previous function, using a different LED
 void changeBoosterpackLED(unsigned int count)
 {
-
+//    if (count == 1){
+//        TurnOn_Boosterpack_LED2_R(); // @suppress("Invalid arguments")
+//    }
+//    else if (count == 2){
+//        TurnOff_Boosterpack_LED2_R(); // @suppress("Invalid arguments")
+//        TurnOn_Launchpad_LED2_G(); // @suppress("Invalid arguments")
+//    }
+//    else if (count == 3){
+//        TurnOff_Launchpad_LED2_G(); // @suppress("Invalid arguments")
+//        TurnOn_Launchpad_LED2_B(); // @suppress("Invalid arguments")
+//    }
+//    else if (count == 4){
+//        TurnOff_Launchpad_LED2_B(); // @suppress("Invalid arguments")
+//        TurnOn_Launchpad_LED2_R(); // @suppress("Invalid arguments")
+//        TurnOn_Launchpad_LED2_G(); // @suppress("Invalid arguments")
+//    }
+//    else if (count == 5){
+//        TurnOn_Launchpad_LED2_B(); // @suppress("Invalid arguments")
+//    }
+//    else{
+//        TurnOff_Launchpad_LED2_R(); // @suppress("Invalid arguments")
+//        TurnOff_Launchpad_LED2_G(); // @suppress("Invalid arguments")
+//        TurnOff_Launchpad_LED2_B(); // @suppress("Invalid arguments")
+//
+//    }
 }
 
 // TODO: Create a button state machine.
@@ -80,6 +131,9 @@ bool fsmBoosterpackButtonS1(unsigned int buttonhistory)
 {
     bool pressed = false;
 
+    if (buttonhistory != 0){
+        pressed = true;
+    }
 
     return pressed;
 }
